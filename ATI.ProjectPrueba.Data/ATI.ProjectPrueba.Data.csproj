@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ATI.ProjectPrueba.classlibrary\ATI.ProjectPrueba.Classlibrary.csproj" />
+  </ItemGroup>
+
 </Project>
