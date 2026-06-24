@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATI.ProjectPrueba.Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20260623162602_AddProductEntities")]
-    partial class AddProductEntities
+    [Migration("20260624201141_AddCountriesEntities")]
+    partial class AddCountriesEntities
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace ATI.ProjectPrueba.Backend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ATI.ProjectPrueba.Classlibrary.Entities.Product", b =>
+            modelBuilder.Entity("ATI.ProjectPrueba.Classlibrary.Entities.Country", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace ATI.ProjectPrueba.Backend.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Products");
+                    b.ToTable("Countries");
                 });
 #pragma warning restore 612, 618
         }

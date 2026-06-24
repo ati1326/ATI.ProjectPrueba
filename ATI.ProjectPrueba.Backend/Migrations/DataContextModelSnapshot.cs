@@ -21,7 +21,7 @@ namespace ATI.ProjectPrueba.Backend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ATI.ProjectPrueba.Classlibrary.Entities.Product", b =>
+            modelBuilder.Entity("ATI.ProjectPrueba.Classlibrary.Entities.Country", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -39,7 +39,7 @@ namespace ATI.ProjectPrueba.Backend.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Products");
+                    b.ToTable("Countries");
                 });
 #pragma warning restore 612, 618
         }

@@ -5,13 +5,13 @@
 namespace ATI.ProjectPrueba.Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class AddProductEntities : Migration
+    public partial class AddCountriesEntities : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "Countries",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -20,12 +20,12 @@ namespace ATI.ProjectPrueba.Backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ID);
+                    table.PrimaryKey("PK_Countries", x => x.ID);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_Name",
-                table: "Products",
+                name: "IX_Countries_Name",
+                table: "Countries",
                 column: "Name",
                 unique: true);
         }
@@ -34,7 +34,7 @@ namespace ATI.ProjectPrueba.Backend.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Countries");
         }
     }
 }

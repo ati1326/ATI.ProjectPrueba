@@ -9,12 +9,12 @@ namespace ATI.ProjectPrueba.Backend.Data
         {
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Country> Countries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Product>().HasIndex(x => x.Name).IsUnique();
+            modelBuilder.Entity<Country>().HasIndex(x => x.Name).IsUnique();
         }
     }
 }
