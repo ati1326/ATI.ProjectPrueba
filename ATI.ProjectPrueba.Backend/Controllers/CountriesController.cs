@@ -36,13 +36,28 @@ namespace ATI.ProjectPrueba.Backend.Controllers
         }
 
 
-
-        [HttpPost]// creamos un pais 
+        [HttpPost] // creamos un pais
         public async Task<IActionResult> PostAsync(Country country)
         {
-            _context.Add(country);
-            await _context.SaveChangesAsync();
-            return Ok(country);
+            try
+            {
+                _context.Add(country);
+                await _context.SaveChangesAsync();
+                return Ok(country);
+            }
+            catch (DbUpdateException dbEx)
+            {
+                if (dbEx.InnerException!.Message.Contains("duplicate") ||
+                    dbEx.InnerException.Message.Contains("UNIQUE"))
+                {
+                    return BadRequest($"Ya existe un país con el nombre '{country.Name}'");
+                }
+                return BadRequest(dbEx.InnerException.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 
