@@ -1,20 +1,19 @@
-﻿
-
-using ATI.ProjectPrueba.Classlibrary.Entities;
+﻿using ATI.ProjectPrueba.Classlibrary.Entities;
 using ATI.ProjectPrueba.Frontend.Repositories;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components;
 using System.Net;
 
-namespace ATI.ProjectPrueba.Frontend.Pages.Countries
+namespace ATI.ProjectPrueba.Frontend.Pages.Categories
 {
-    public partial class  CountriesIndex
+    public partial class CategoryIndex
     {
+
         [Inject] private IRepository Repository { get; set; } = null!;
         [Inject] public SweetAlertService SweetAlertService { get; set; } = null!;
         [Inject] public NavigationManager NavigationManager { get; set; } = null!;
 
-        public List<Country>? Countries { get; set; }
+        public List<Category>? Categories { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
@@ -23,22 +22,22 @@ namespace ATI.ProjectPrueba.Frontend.Pages.Countries
 
         private async Task LoadAsync()
         {
-            var responseHttp = await   Repository.GetAsync<List<Country>>("api/countries");
+            var responseHttp = await Repository.GetAsync<List<Category>>("api/categories ");
             if (responseHttp.Error)
             {
                 var message = await responseHttp.GetErrorMessageAsync();
                 await SweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
                 return;
             }
-            Countries = responseHttp.Response;
+            Categories = responseHttp.Response;
         }
 
-        private async Task DeleteAsync(Country country)
+        private async Task DeleteAsync(Category category )
         {
             var result = await SweetAlertService.FireAsync(new SweetAlertOptions
             {
                 Title = "Confirmacion ",
-                Text = $"¿Estas Seguro de querer borrar el pais : {country.Name}?",
+                Text = $"¿Estas Seguro de querer borrar la categoria : {category.Name}?",
                 Icon = SweetAlertIcon.Question,
                 ShowCancelButton = true,
             });
@@ -49,13 +48,13 @@ namespace ATI.ProjectPrueba.Frontend.Pages.Countries
                 return;
             }
 
-            var responseHttp = await Repository.DeleteAsync<Country>($"api/countries/{country.ID}");
+            var responseHttp = await Repository.DeleteAsync<Category>($"api/categories/{category.ID}");
 
             if (responseHttp.Error)
             {
                 if (responseHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)
                 {
-                    NavigationManager.NavigateTo("/countries");
+                    NavigationManager.NavigateTo("/categories");
                 }
                 else
                 {
@@ -74,7 +73,7 @@ namespace ATI.ProjectPrueba.Frontend.Pages.Countries
                 Timer = 3000
             });
             await toast.FireAsync(icon: SweetAlertIcon.Success, message: "Registro Borrado con Exito");
-        
+
         }
     }
 }

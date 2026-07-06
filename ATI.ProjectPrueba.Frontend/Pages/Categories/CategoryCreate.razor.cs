@@ -1,23 +1,23 @@
 ﻿using ATI.ProjectPrueba.Classlibrary.Entities;
+using ATI.ProjectPrueba.Frontend.Pages.Countries;
 using ATI.ProjectPrueba.Frontend.Repositories;
 using CurrieTechnologies.Razor.SweetAlert2;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 
-namespace ATI.ProjectPrueba.Frontend.Pages.Countries
+namespace ATI.ProjectPrueba.Frontend.Pages.Categories
 {
-    [Authorize(Roles = "Admin")]
-    public partial class CountryCreate
+    public  partial class CategoryCreate
     {
-        private Country country = new();
-        public CountryForm? countryForm;
+
+        private Category category = new();
+        public CategoryFrom? categoryFrom;
         [Inject] public IRepository Repository { get; set; } = null!;
         [Inject] public SweetAlertService SweetAlertService { get; set; } = null!;
         [Inject] public NavigationManager NavigationManager { get; set; } = null!;
 
         private async Task CreateAsync()
         {
-            var responseHttp = await Repository.PostAsync("/api/countries", country);
+            var responseHttp = await Repository.PostAsync("/api/categories", category);
             if (responseHttp.Error)
             {
                 var message = await responseHttp.GetErrorMessageAsync();
@@ -38,8 +38,9 @@ namespace ATI.ProjectPrueba.Frontend.Pages.Countries
 
         private void Return()
         {
-            countryForm!.FormPostedSuccessfully = true;
-            NavigationManager.NavigateTo("/countries");
+            categoryFrom!.FormPostedSuccessfully = true;
+            NavigationManager.NavigateTo("/categories");
         }
     }
+
 }
