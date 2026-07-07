@@ -1,17 +1,19 @@
 ﻿using ATI.ProjectPrueba.Classlibrary.Entities;
+using ATI.ProjectPrueba.Classlibrary.Interfaces;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Routing;
 
-namespace ATI.ProjectPrueba.Frontend.Pages.Categories
+namespace ATI.ProjectPrueba.Frontend.Shared
 {
-    public partial class CategoryFrom
+    public partial  class FormWithName<TModel> where TModel : IEntityWithName
     {
-
         private EditContext editContext = null!;
 
-        [EditorRequired, Parameter] public Category category { get; set; } = null!;
+        [EditorRequired, Parameter] public TModel Model { get; set; } = default!;
+        [EditorRequired, Parameter] public string Label { get; set; } = null!;
+
         [EditorRequired, Parameter] public EventCallback OnValidSubmit { get; set; }
         [EditorRequired, Parameter] public EventCallback ReturnAction { get; set; }
         [Inject] public SweetAlertService SweetAlertService { get; set; } = null!;
@@ -20,7 +22,7 @@ namespace ATI.ProjectPrueba.Frontend.Pages.Categories
 
         protected override void OnInitialized()
         {
-            editContext = new EditContext(category);
+            editContext = new(Model);
         }
 
         private async Task OnBeforeInternalNavigation(LocationChangingContext context)
@@ -47,5 +49,5 @@ namespace ATI.ProjectPrueba.Frontend.Pages.Categories
 
             context.PreventNavigation();
         }
-}
+    }
 }

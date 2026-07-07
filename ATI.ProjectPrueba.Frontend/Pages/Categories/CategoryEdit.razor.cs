@@ -1,5 +1,6 @@
 ﻿using ATI.ProjectPrueba.Classlibrary.Entities;
 using ATI.ProjectPrueba.Frontend.Repositories;
+using ATI.ProjectPrueba.Frontend.Shared;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components;
 using System.Net;
@@ -9,7 +10,7 @@ namespace ATI.ProjectPrueba.Frontend.Pages.Categories
     public partial class CategoryEdit
     {
         private Category? category;
-        public CategoryFrom? categoryFrom;
+        public FormWithName<Category>? categoryFrom;
 
         [Inject] public IRepository Repository { get; set; } = null!;
         [Inject] public SweetAlertService SweetAlertService { get; set; } = null!;

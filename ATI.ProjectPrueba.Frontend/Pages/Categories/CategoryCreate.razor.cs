@@ -1,6 +1,7 @@
 ﻿using ATI.ProjectPrueba.Classlibrary.Entities;
 using ATI.ProjectPrueba.Frontend.Pages.Countries;
 using ATI.ProjectPrueba.Frontend.Repositories;
+using ATI.ProjectPrueba.Frontend.Shared;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components;
 
@@ -10,7 +11,8 @@ namespace ATI.ProjectPrueba.Frontend.Pages.Categories
     {
 
         private Category category = new();
-        public CategoryFrom? categoryFrom;
+
+        public FormWithName<Category>? categoryFrom;
         [Inject] public IRepository Repository { get; set; } = null!;
         [Inject] public SweetAlertService SweetAlertService { get; set; } = null!;
         [Inject] public NavigationManager NavigationManager { get; set; } = null!;

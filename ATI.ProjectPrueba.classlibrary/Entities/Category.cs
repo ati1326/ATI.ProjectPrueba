@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ATI.ProjectPrueba.Classlibrary.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ATI.ProjectPrueba.Classlibrary.Entities
 {
-    public class Category
+    public class Category : IEntityWithName
     {
         //lo que  va a tener  el pais
         public int ID { get; set; }
