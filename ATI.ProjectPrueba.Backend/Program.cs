@@ -9,12 +9,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,7 +26,12 @@ builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWor
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUsersUnitOfWork, UsersUnitOfWork>();    
+builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
+
+
+
+builder.Services.AddScoped<IUsersUnitOfWork, UsersUnitOfWork>();
+builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
 
 
 builder.Services.AddIdentity<User, IdentityRole>( x =>

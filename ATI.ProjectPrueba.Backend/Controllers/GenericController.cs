@@ -13,7 +13,7 @@ namespace ATI.ProjectPrueba.Backend.Controllers
         }
 
         [HttpGet]
-        public virtual async Task<IActionResult> GetAllAsync()
+        public virtual async Task<IActionResult> GetAsync()
         {
             var  action = await _unitOfWork.GetAsync();
             if (action.WasSuccess)

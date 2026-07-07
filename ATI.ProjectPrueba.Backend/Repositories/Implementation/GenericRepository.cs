@@ -17,7 +17,7 @@ namespace ATI.ProjectPrueba.Backend.Repositories.Implementation
             _entity = _context.Set<T>();
         }
 
-        public async Task<ActionResponse<T>> AddAsync(T entity)
+        public virtual async Task<ActionResponse<T>> AddAsync(T entity)
         { 
             _context.Add(entity);
             try
@@ -43,7 +43,7 @@ namespace ATI.ProjectPrueba.Backend.Repositories.Implementation
 
        
 
-        public async Task<ActionResponse<T>> DeleteAsync(int ID)
+        public virtual async Task<ActionResponse<T>> DeleteAsync(int ID)
         {
              
             var row = await _entity.FindAsync(ID); 
@@ -75,7 +75,7 @@ namespace ATI.ProjectPrueba.Backend.Repositories.Implementation
             }
         }
 
-        public async Task<ActionResponse<T>> GetAsync(int ID)
+        public virtual async Task<ActionResponse<T>> GetAsync(int ID)
         {
 
             var row = await _entity.FindAsync(ID);
@@ -97,7 +97,7 @@ namespace ATI.ProjectPrueba.Backend.Repositories.Implementation
         }
 
 
-        public async Task<ActionResponse<IEnumerable<T>>> GetAsync()
+        public virtual async Task<ActionResponse<IEnumerable<T>>> GetAsync()
         {
             return new ActionResponse<IEnumerable<T>>
             {
@@ -107,7 +107,7 @@ namespace ATI.ProjectPrueba.Backend.Repositories.Implementation
         }
 
 
-        public async Task<ActionResponse<T>> UpdateAsync(T entity)
+        public virtual async Task<ActionResponse<T>> UpdateAsync(T entity)
         {
 
             _context.Update(entity);

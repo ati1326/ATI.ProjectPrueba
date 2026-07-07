@@ -19,7 +19,7 @@ namespace ATI.ProjectPrueba.Backend.Data
         {
             await _context.Database.EnsureCreatedAsync();
             await CheckCountriesAsync();
-            await CheckCategoriesAsync();
+            //await CheckCategoriesAsync();
             await CheckRolesAsync();
             await CheckUserAsync("1010", "Juan", "Zuluaga", "zulu@yopmail.com", "322 311 4620", "Calle Luna Calle Sol", UserType.Admin);
 
@@ -58,28 +58,86 @@ namespace ATI.ProjectPrueba.Backend.Data
             return user;
         }
 
-       
+
         private async Task CheckCountriesAsync()
         {
             if (!_context.Countries.Any())
             {
-                _context.Countries.Add(new Country { Name = "Colombia" });
-                _context.Countries.Add(new Country { Name = "Estados Unidos" });
+                _context.Countries.Add(new Country
+                {
+                    Name = "Colombia",
+                    States = [
+                          new State()
+                          {
+                             Name = "Antioquia",
+                             Cities = [
+                                new() { Name = "Medellín" },
+                                new() { Name = "Itagüí" },
+                                new() { Name = "Envigado" },
+                                new() { Name = "Bello" },
+                                new() { Name = "Rionegro" },
+                             ]
+                          },
+                         new State()
+                         {
+                            Name = "Bogotá",
+                            Cities = [
+                                new() { Name = "Usaquen" },
+                                new() { Name = "Champinero" },
+                                new() { Name = "Santa fe" },
+                                new() { Name = "Useme" },
+                                new() { Name = "Bosa" },
+                            ]
+                         },
+                      ]
+                });
+
+                _context.Countries.Add(new Country
+                {
+                    Name = "Estados Unidos",
+                    States = [
+
+                       new State()
+                       {
+                           Name = "Florida",
+                           Cities = [
+                                new() { Name = "Orlando" },
+                                new() { Name = "Miami" },
+                                new() { Name = "Tampa" },
+                                new() { Name = "Fort Lauderdale" },
+                                new() { Name = "Key West" },
+                           ]
+                       },
+                       new State()
+                       {
+                            Name = "Texas",
+                            Cities = [
+                                new() { Name = "Houston" },
+                                new() { Name = "San Antonio" },
+                                new() { Name = "Dallas" },
+                                new() { Name = "Austin" },
+                                new() { Name = "El Paso" },
+
+                            ]
+                       },
+                    ]
+                });
             }
 
             await _context.SaveChangesAsync();
         }
 
-        private async Task CheckCategoriesAsync()
-        {
-            if (!_context.Categories.Any())
-            {
-                _context.Categories.Add(new Category { Name = "Calzado" });
-                _context.Categories.Add(new Category { Name = "Tecnología" });
-            }
 
-            await _context.SaveChangesAsync();
-        }
+        //private async Task CheckCategoriesAsync()
+        //{
+        //    if (!_context.Categories.Any())
+        //    {
+        //        _context.Categories.Add(new Category { Name = "Calzado" });
+        //        _context.Categories.Add(new Category { Name = "Tecnología" });
+        //    }
+
+        //    await _context.SaveChangesAsync();
+        //}
 
     }
 }
