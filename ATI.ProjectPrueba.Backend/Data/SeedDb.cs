@@ -38,8 +38,14 @@ namespace ATI.ProjectPrueba.Backend.Data
             var user = await _usersUnitOfWork.GetUserAsync(email);
             if (user == null)
             {
+                var city = _context.Cities.FirstOrDefault();
+                if (city == null)
+                {
+                    throw new Exception("No hay ciudades en la base de datos. Verifica CheckCountriesAsync.");
+                }
                 user = new User
                 {
+
                     FirstName = firstName,
                     LastName = lastName,
                     Email = email,
@@ -47,7 +53,7 @@ namespace ATI.ProjectPrueba.Backend.Data
                     PhoneNumber = phone,
                     Address = address,
                     Document = document,
-                    //City = _context.Cities.FirstOrDefault(),
+                    City = city,
                     UserType = userType,
                 };
 

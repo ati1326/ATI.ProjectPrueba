@@ -2,11 +2,13 @@
 using ATI.ProjectPrueba.Frontend.Repositories;
 using ATI.ProjectPrueba.Frontend.Shared;
 using CurrieTechnologies.Razor.SweetAlert2;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using System.Net;
 
 namespace ATI.ProjectPrueba.Frontend.Pages.Countries
 {
+    [Authorize(Roles = "Admin")]
     public partial class CountryEdit
     {
         private Country? country;

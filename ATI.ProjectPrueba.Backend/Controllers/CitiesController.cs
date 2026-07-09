@@ -8,13 +8,13 @@ namespace ATI.ProjectPrueba.Backend.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
-
     [ApiController]
     [Route("api/[controller]")]
-    public class CategoriesController : GenericController<Category>
+    public class CitiesController : GenericController<City>
     {
-        public CategoriesController(IGenericUnitOfWork<Category> unitOfWork) : base(unitOfWork)
+        public CitiesController(IGenericUnitOfWork<City> unitOfWork) : base(unitOfWork)
         {
         }
+
     }
 }

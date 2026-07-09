@@ -4,6 +4,8 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>5c9c7920-02e4-4a0c-ad9b-38e7fbe2ee4e</UserSecretsId>
+	  <NoWarn>NU1903</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +22,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+    <PackageReference Include="NSwag.AspNetCore" Version="14.7.1" />
   </ItemGroup>
 
   <ItemGroup>

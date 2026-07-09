@@ -1,10 +1,8 @@
-﻿using ATI.ProjectPrueba.Backend.Data;
-using ATI.ProjectPrueba.Backend.UnitsOfWork.Interfaces;
+﻿using ATI.ProjectPrueba.Backend.UnitsOfWork.Interfaces;
 using ATI.ProjectPrueba.Classlibrary.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace ATI.ProjectPrueba.Backend.Controllers
 {
@@ -12,19 +10,20 @@ namespace ATI.ProjectPrueba.Backend.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
-    public class CountriesController : GenericController<Country>
-    {
-        private readonly ICountriesUnitOfWork _countriesUnitOfWork;
+    public class StatesController : GenericController<State>
 
-        public CountriesController(IGenericUnitOfWork<Country> unit, ICountriesUnitOfWork countriesUnitOfWork) : base(unit)
+    {
+        private readonly IStatesUnitOfWork _statesUnitOfWork;
+
+        public StatesController(IGenericUnitOfWork<State> unitOfWork, IStatesUnitOfWork statesUnitOfWork) : base(unitOfWork)
         {
-            _countriesUnitOfWork = countriesUnitOfWork;
+            _statesUnitOfWork = statesUnitOfWork;
         }
 
         [HttpGet]
         public override async Task<IActionResult> GetAsync()
         {
-            var response = await _countriesUnitOfWork.GetAsync();
+            var response = await _statesUnitOfWork.GetAsync();
             if (response.WasSuccess)
             {
                 return Ok(response.Result);
@@ -35,13 +34,13 @@ namespace ATI.ProjectPrueba.Backend.Controllers
         [HttpGet("{id}")]
         public override async Task<IActionResult> GetAsync(int id)
         {
-            var response = await _countriesUnitOfWork.GetAsync(id);
+            var response = await _statesUnitOfWork.GetAsync(id);
             if (response.WasSuccess)
             {
                 return Ok(response.Result);
             }
             return NotFound(response.Message);
         }
-    }
 
+    }
 }

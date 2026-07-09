@@ -1,4 +1,5 @@
-﻿using ATI.ProjectPrueba.Classlibrary.Entities;
+﻿using ATI.ProjectPrueba.Classlibrary.DTOs;
+using ATI.ProjectPrueba.Classlibrary.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace ATI.ProjectPrueba.Backend.Repositories.Interfaces
@@ -14,5 +15,10 @@ namespace ATI.ProjectPrueba.Backend.Repositories.Interfaces
         Task AddUserToRoleAsync(User user, string roleName);
 
         Task<bool> IsUserInRoleAsync(User user, string rolename);
+
+        Task<SignInResult> LoginAsync(LoginDTO model);
+
+        Task LogoutAsync();
+
     }
 }
